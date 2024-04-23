@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Cache and log files
+.npm/
+.npmrc
+.npm-debug.log*
+.yarn-integrity
+.yarn-cache/
+.pnp.js
+.pnp.loader.mjs
+.pnp.loader.cjs
+yarn-error.log
+lerna-debug.log
+
+# Environment

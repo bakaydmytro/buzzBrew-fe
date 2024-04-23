@@ -1,0 +1,55 @@
+.modal-content{
+    height: 600px;
+    width:70%;
+    display:flex;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.image-container{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-container{
+    height: 100%;
+    width:30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.form-container #basic {
+    width: 90%;
+    margin: 5px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#basic input,
+.ant-input-password {
+    border: 0;
+    width: 250px;
+    border-bottom: 1px solid;
+    border-color: #d9d9d9;
+    border-radius: 0;
+}
+
+.preview-image {
+  max-width: 95%; 
+  max-height: 95%; 
+  object-fit: cover; 
+  
+}
