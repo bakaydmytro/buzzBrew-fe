@@ -16,5 +16,5 @@ build/
 .pnp.loader.cjs
 yarn-error.log
 lerna-debug.log
-
+.env
 # Environment

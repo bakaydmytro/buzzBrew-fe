@@ -38,10 +38,16 @@
     border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.description-area .ant-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #basic input,
 .ant-input-password {
     border: 0;
-    width: 250px;
+    width: 200px;
     border-bottom: 1px solid;
     border-color: #d9d9d9;
     border-radius: 0;
