@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { createInstagramPost, getUserData } from "../../services/userServices";
-import { Button, Form, Input, TextArea, notification } from "antd";
+import { Button, Form, Input, TextArea, notification , Spin} from "antd";
 
 import './css/UserHomePage.css'
 import { generateImageBasedOnDescription, generateImageCaption, generatePostDescription } from "../../services/contentService";
@@ -13,6 +13,7 @@ const UserHomePage = () => {
   const [theme, setTheme] = useState("");
   const [description, setDescription] = useState("");
   const [caption, setCaption] = useState("");
+  const [loader, setLoader] = useState(false)
   
   const [form] = Form.useForm();
   
@@ -28,15 +29,24 @@ const UserHomePage = () => {
   };
   const generateContent = () => {
     if (theme && !imageUrl) {
-      generatePostDescription({"theme":theme}).then(res => {
+      generatePostDescription({ "theme": theme }).then(res => {
+        setLoader(true)
         console.log(res.description)
         setDescription(res.description)
         form.setFieldsValue({ description: res.description });
         if (res.description) {
           generateImageBasedOnDescription(description).then(res => {
+            if(res && res.imageUrl){
             console.log(res.imageUrl)
             setImageUrl(res.imageUrl)
-            form.setFieldsValue({ imageUrl: res.imageUrl });
+              form.setFieldsValue({ imageUrl: res.imageUrl });
+            }
+            setLoader(false)
+          }).catch(err => {
+            notification.warning(
+              {"message": err}
+            )
+            setLoader(false)
           })
         }
       })
@@ -57,6 +67,14 @@ const UserHomePage = () => {
   const submit = (initialValues) => {
     console.log(initialValues);
     createInstagramPost(initialValues).then(res => {
+      form.setFieldsValue({ description: ''});
+      form.setFieldsValue({ theme: ''});
+      form.setFieldsValue({ imageUrl: '' });
+      setCaption("")
+      setImageUrl("")
+      notification.success({
+        message: res
+      });
       console.log(res)
     }).catch(err => {
       console.log(err)
@@ -67,13 +85,17 @@ const UserHomePage = () => {
   return (
     <div className="modal-content">
       <div className="image-container">
+      <Spin spinning={loader}>
+
         {imageUrl && (
           <div>
           <img src={imageUrl} className="preview-image" />
           <div style={{textAlign:"center"}}>{caption}</div>
             </div>
-        )}
-      </div>
+          )}
+        </Spin>
+
+        </div>
       <div className="form-container">
         <Form
           name="basic"

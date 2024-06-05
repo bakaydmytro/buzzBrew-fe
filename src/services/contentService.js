@@ -11,7 +11,7 @@ export const generatePostDescription = async (data) => {
         return response.data
     }).catch((error) => {
         console.log(error)
-        return error.response.data
+        return error.response
     });
 };
 
@@ -23,7 +23,7 @@ export const generateImageBasedOnDescription = async (description) => {
         return response.data
     }).catch((error) => {
         console.log(error)
-        return error.response.data
+        return error.response
     });
 };
 
@@ -33,6 +33,6 @@ export const generateImageCaption = async (image_url) => {
         return response.data
     }).catch((error) => {
         console.log(error)
-        return error.response.data
+        return error.response
     });
 };
